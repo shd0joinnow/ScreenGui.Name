@@ -63,7 +63,7 @@ UIListLayout.Padding = UDim.new(0, 10)
 UIListLayout.FillDirection = Enum.FillDirection.Vertical
 
 -- random
-ho.Parent = MainFrame
+logo.Parent = MainFrame
 Title.Parent = MainFrame
 Credit.Parent = MainFrame
 ScrollingFrame.Parent = MainFrame
