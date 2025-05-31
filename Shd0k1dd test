@@ -1,0 +1,653 @@
+local Player = game:GetService("Players").LocalPlayer
+local Mouse = Player:GetMouse()
+
+-- idk
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "SHD0GUI 1.3V"
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+local MainFrame = Instance.new("Frame")
+MainFrame.Name = "MainFrame"
+MainFrame.Size = UDim2.new(0, 450, 0, 500)
+MainFrame.Position = UDim2.new(0.5, -225, 0.5, -250)
+MainFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+MainFrame.BackgroundTransparency = 0.2
+MainFrame.BorderColor3 = Color3.fromRGB(0, 255, 0)
+MainFrame.BorderSizePixel = 2
+MainFrame.Active = true
+MainFrame.Draggable = true
+MainFrame.ClipsDescendants = true
+
+-- logo LMAO
+local Logo = Instance.new("ImageLabel")
+Logo.Name = "Logo"
+Logo.Image = "rbxassetid://99938629174943"
+Logo.Size = UDim2.new(0, 50, 0, 50)
+Logo.Position = UDim2.new(1, -55, 0, 5)
+Logo.BackgroundTransparency = 1
+Logo.ZIndex = 2
+
+local Title = Instance.new("TextLabel")
+Title.Name = "Title"
+Title.Text = "shd0gui 1.3v f3x again! "
+Title.Size = UDim2.new(1, -60, 0, 40)
+Title.Position = UDim2.new(0, 0, 0, 0)
+Title.BackgroundTransparency = 1
+Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title.Font = Enum.Font.Cartoon
+Title.TextSize = 20
+Title.TextStrokeTransparency = 0.7
+Title.ZIndex = 2
+
+local Credit = Instance.new("TextLabel")
+Credit.Name = "Credit"
+Credit.Text = "Made by shd0kidd {shd0k1dd only}"
+Credit.Size = UDim2.new(1, 0, 0, 20)
+Credit.Position = UDim2.new(0, 0, 0, 40)
+Credit.BackgroundTransparency = 1
+Credit.TextColor3 = Color3.fromRGB(150, 150, 150)
+Credit.Font = Enum.Font.Cartoon
+Credit.TextSize = 14
+Credit.ZIndex = 2
+
+local ScrollingFrame = Instance.new("ScrollingFrame")
+ScrollingFrame.Name = "ScrollingFrame"
+ScrollingFrame.Size = UDim2.new(1, -10, 1, -80)
+ScrollingFrame.Position = UDim2.new(0, 5, 0, 70)
+ScrollingFrame.BackgroundTransparency = 1
+ScrollingFrame.ScrollBarThickness = 5
+ScrollingFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
+
+local UIListLayout = Instance.new("UIListLayout")
+UIListLayout.Padding = UDim.new(0, 10)
+UIListLayout.FillDirection = Enum.FillDirection.Vertical
+
+-- random
+ho.Parent = MainFrame
+Title.Parent = MainFrame
+Credit.Parent = MainFrame
+ScrollingFrame.Parent = MainFrame
+UIListLayout.Parent = ScrollingFrame
+
+MainFrame.Parent = ScreenGui
+ScreenGui.Parent = Player:WaitForChild("PlayerGui")
+
+-- hm
+local function CreateButton(name, text)
+    local Button = Instance.new("TextButton")
+    Button.Name = name
+    Button.Text = text
+    Button.Size = UDim2.new(0.48, 0, 0, 40)
+    Button.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+    Button.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Button.TextColor3 = Color3.fromRGB(255, 0, 0)
+    Button.Font = Enum.Font.Cartoon
+    Button.TextSize = 16
+    Button.ZIndex = 2
+    
+    return Button
+end
+
+-- admin
+local function SendCommand(command)
+    local ReplicatedStorage = game:GetService("ReplicatedStorage")
+    local RequestCommand = ReplicatedStorage:WaitForChild("HDAdminHDClient").Signals.RequestCommand
+    RequestCommand:InvokeServer(command)
+end
+
+-- Function to handle F3X SyncAPI
+local function GetSyncAPI()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    local tool
+    
+    for i,v in player:GetDescendants() do
+        if v.Name == "SyncAPI" then
+            tool = v.Parent
+        end
+    end
+    
+    for i,v in game.ReplicatedStorage:GetDescendants() do
+        if v.Name == "SyncAPI" then
+            tool = v.Parent
+        end
+    end
+    
+    return tool
+end
+
+-- Create buttons in frames (2 per row)
+local function AddButtonPair(button1, button2)
+    local frame = Instance.new("Frame")
+    frame.Size = UDim2.new(1, 0, 0, 40)
+    frame.BackgroundTransparency = 1
+    
+    button1.Position = UDim2.new(0, 0, 0, 0)
+    button2.Position = UDim2.new(0.52, 0, 0, 0)
+    
+    button1.Parent = frame
+    button2.Parent = frame
+    frame.Parent = ScrollingFrame
+end
+
+-- Create all buttons
+local Theme1Button = CreateButton("Theme1", "THEME 1")
+local Theme2Button = CreateButton("Theme2", "THEME 2")
+local C00LKIDDButton = CreateButton("C00LKIDD", "wom't stop us g00by'")
+local SHD0K1DDThemeButton = CreateButton("shd0kiddTheme", "shd0k1dd THEME")
+
+local StopAudioButton = CreateButton("StopAudio", "STOP AUDIOS")
+local KillAllButton = CreateButton("KillAll", "KILL ALL")
+local KickAllButton = CreateButton("KickAll", "KICK ALL")
+local CharAllButton = CreateButton("CharAll", "CHAR ALL")
+
+local TitleAllButton = CreateButton("TitleAll", "TITLE ALL")
+local JailAllButton = CreateButton("JailAll", "JAIL ALL")
+local AlertAllButton = CreateButton("AlertAll", "ALERT ALL")
+local HintButton = CreateButton("Hint", "HINT")
+
+local ServerMsgButton = CreateButton("ServerMsg", "SERVER MSG SHD0K1DD")
+local FireAllButton = CreateButton("FireAll", "FIRE ALL")
+local UnanchorAllButton = CreateButton("UnanchorAll", "UNANCHOR ALL")
+local SkyboxButton = CreateButton("Skybox", "SKYBOX")
+
+local Skybox2Button = CreateButton("Skybox2", "SKYBOX 2")
+local DecalSpamButton = CreateButton("DecalSpam", "DECAL SPAM")
+local DecalSpam2Button = CreateButton("DecalSpam2", "DECAL SPAM 2")
+local JOHNDOE = CreateButton("JOHNDOE", "John doe DECAL SPAM")
+
+local SpamTeamsButton = CreateButton("SpamTeams", "SPAM TEAMS")
+local ParticlesButton = CreateButton("Particles", "PARTICLES")
+local Particles2Button = CreateButton("Particles2", "PARTICLES 2")
+
+-- Add button pairs
+AddButtonPair(Theme1Button, Theme2Button)
+AddButtonPair(ErikaButton, shd0kiddThemeButton)
+AddButtonPair(StopAudioButton, KillAllButton)
+AddButtonPair(KickAllButton, CharAllButton)
+AddButtonPair(TitleAllButton, JailAllButton)
+AddButtonPair(AlertAllButton, HintButton)
+AddButtonPair(ServerMsgButton, FireAllButton)
+AddButtonPair(UnanchorAllButton, SkyboxButton)
+AddButtonPair(Skybox2Button, DecalSpamButton)
+AddButtonPair(DecalSpam2Button, JohndoeButton)
+AddButtonPair(SpamTeamsButton, ParticlesButton)
+
+-- Add single button
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(1, 0, 0, 40)
+frame.BackgroundTransparency = 1
+Particles2Button.Position = UDim2.new(0, 0, 0, 0)
+Particles2Button.Parent = frame
+frame.Parent = ScrollingFrame
+
+-- Update canvas size
+UIListLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
+    ScrollingFrame.CanvasSize = UDim2.new(0, 0, 0, UIListLayout.AbsoluteContentSize.Y + 10)
+end)
+
+-- Button functions
+Theme1Button.MouseButton1Click:Connect(function()
+    SendCommand(";music 17422074849")
+end)
+
+Theme2Button.MouseButton1Click:Connect(function()
+    SendCommand(";music 77777891109289")
+end)
+
+ErikaButton.MouseButton1Click:Connect(function()
+    SendCommand(";music 1847661821")
+end)
+
+k00lkiddThemeButton.MouseButton1Click:Connect(function()
+    SendCommand(";music 118324869664952")
+end)
+
+StopAudioButton.MouseButton1Click:Connect(function()
+    -- Client-side audio stopping
+    for _, sound in ipairs(game:GetService("SoundService"):GetDescendants()) do
+        if sound:IsA("Sound") then
+            sound:Stop()
+        end
+    end
+end)
+
+KillAllButton.MouseButton1Click:Connect(function()
+    SendCommand(";kill all")
+end)
+
+KickAllButton.MouseButton1Click:Connect(function()
+    SendCommand(";kick all")
+end)
+
+CharAllButton.MouseButton1Click:Connect(function()
+    SendCommand(";char all shd0k1dd")
+end)
+
+TitleAllButton.MouseButton1Click:Connect(function()
+    SendCommand(";title all shd0k1dd")
+end)
+
+JailAllButton.MouseButton1Click:Connect(function()
+    SendCommand(";jail all")
+end)
+
+AlertAllButton.MouseButton1Click:Connect(function()
+    SendCommand(";alert all SHD0K1DD was here")
+end)
+
+HintButton.MouseButton1Click:Connect(function()
+    SendCommand(";hint SHD0K1DD was here")
+end)
+
+ServerMsgButton.MouseButton1Click:Connect(function()
+    SendCommand(";ServerMessage SHD0K1DD was here")
+end)
+
+SpamTeamsButton.MouseButton1Click:Connect(function()
+    SendCommand(";createteam blue SHD0K1DD was here LMAO")
+    SendCommand(";createteam red hello kids Team SHD0K1DD was here")
+    SendCommand(";createteam y game rekted")
+    SendCommand(";createteam blue rekted by team SHD0K1DD")
+    SendCommand(";createteam rel haxed by SHD0K1DD")
+    SendCommand(";createteam y idk")
+    SendCommand(";createteam p wat")
+    SendCommand(";createteam y idk you just got haxed by SHD0K1DD LOL")
+    SendCommand(";createteam o no one can stop SHD0K1DD")
+    SendCommand(";createteam black idk")
+    SendCommand(";createteam green SHD0K1DD was here LMAO")
+end)
+
+FireAllButton.MouseButton1Click:Connect(function()
+    local tool = GetSyncAPI()
+    if tool then
+        local remote = tool.SyncAPI.ServerEndpoint
+        
+        local function _(args)
+            remote:InvokeServer(unpack(args))
+        end
+        
+        local function SetLocked(part,boolean)
+            local args = {
+                [1] = "SetLocked",
+                [2] = {
+                    [1] = part
+                },
+                [3] = boolean
+            }
+            _(args)
+        end
+        
+        local function AddFire(part)
+            local args = {
+                [1] = "CreateFire",
+                [2] = {
+                    [1] = {
+                        ["Part"] = part,
+                        ["Heat"] = 25,
+                        ["Size"] = 5,
+                        ["Color"] = Color3.fromRGB(0, 255, 0) -- Green fire
+                    }
+                }
+            }
+            _(args)
+        end
+        
+        for i,v in game.Workspace:GetDescendants() do
+            if v:IsA("BasePart") then
+                spawn(function()
+                    SetLocked(v,false)
+                    AddFire(v)
+                end)
+            end
+        end
+    end
+end)
+
+UnanchorAllButton.MouseButton1Click:Connect(function()
+    local tool = GetSyncAPI()
+    if tool then
+        local remote = tool.SyncAPI.ServerEndpoint
+        
+        local function _(args)
+            remote:InvokeServer(unpack(args))
+        end
+        
+        local function SetLocked(part,boolean)
+            local args = {
+                [1] = "SetLocked",
+                [2] = {
+                    [1] = part
+                },
+                [3] = boolean
+            }
+            _(args)
+        end
+        
+        local function SetAnchor(boolean,part)
+            local args = {
+                [1] = "SyncAnchor",
+                [2] = {
+                    [1] = {
+                        ["Part"] = part,
+                        ["Anchored"] = boolean
+                    }
+                }
+            }
+            _(args)
+        end
+        
+        for i,v in game.Workspace:GetDescendants() do
+            if v:IsA("BasePart") then
+                spawn(function()
+                    SetLocked(v,false)
+                    SetAnchor(false,v)
+                end)
+            end
+        end
+    end
+end)
+
+local function Skybox(id)
+    local tool = GetSyncAPI()
+    if tool then
+        local char = Player.Character
+        if char and char:FindFirstChild("HumanoidRootPart") then
+            local remote = tool.SyncAPI.ServerEndpoint
+            local e = char.HumanoidRootPart.CFrame.x
+            local f = char.HumanoidRootPart.CFrame.y
+            local g = char.HumanoidRootPart.CFrame.z
+            
+            local args = {
+                [1] = "CreatePart",
+                [2] = "Normal",
+                [3] = CFrame.new(math.floor(e),math.floor(f),math.floor(g)) + Vector3.new(0,6,0),
+                [4] = workspace
+            }
+            remote:InvokeServer(unpack(args))
+            
+            for _,v in ipairs(game.Workspace:GetDescendants()) do
+                if v:IsA("BasePart") and v.CFrame.x == math.floor(e) and v.CFrame.z == math.floor(g) then
+                    local setNameArgs = {
+                        [1] = "SetName",
+                        [2] = {
+                            [1] = v
+                        },
+                        [3] = "Skybox"
+                    }
+                    remote:InvokeServer(unpack(setNameArgs))
+                    
+                    local addMeshArgs = {
+                        [1] = "CreateMeshes",
+                        [2] = {
+                            [1] = {
+                                ["Part"] = v
+                            }
+                        }
+                    }
+                    remote:InvokeServer(unpack(addMeshArgs))
+                    
+                    local setMeshArgs = {
+                        [1] = "SyncMesh",
+                        [2] = {
+                            [1] = {
+                                ["Part"] = v,
+                                ["MeshId"] = "rbxassetid://111891702759441"
+                            }
+                        }
+                    }
+                    remote:InvokeServer(unpack(setMeshArgs))
+                    
+                    local setTextureArgs = {
+                        [1] = "SyncMesh",
+                        [2] = {
+                            [1] = {
+                                ["Part"] = v,
+                                ["TextureId"] = "rbxassetid://"..id
+                            }
+                        }
+                    }
+                    remote:InvokeServer(unpack(setTextureArgs))
+                    
+                    local resizeArgs = {
+                        [1] = "SyncMesh",
+                        [2] = {
+                            [1] = {
+                                ["Part"] = v,
+                                ["Scale"] = Vector3.new(7200, 7200, 7200)
+                            }
+                        }
+                    }
+                    remote:InvokeServer(unpack(resizeArgs))
+                    
+                    local lockArgs = {
+                        [1] = "SetLocked",
+                        [2] = {
+                            [1] = v
+                        },
+                        [3] = true
+                    }
+                    remote:InvokeServer(unpack(lockArgs))
+                end
+            end
+        end
+    end
+end
+
+SkyboxButton.MouseButton1Click:Connect(function()
+    Skybox("99938629174943")
+end)
+
+Skybox2Button.MouseButton1Click:Connect(function()
+    Skybox("13218221691")
+end)
+
+local function DecalSpam(id)
+    local tool = GetSyncAPI()
+    if tool then
+        local remote = tool.SyncAPI.ServerEndpoint
+        
+        local function _(args)
+            remote:InvokeServer(unpack(args))
+        end
+        
+        local function SetLocked(part,boolean)
+            local args = {
+                [1] = "SetLocked",
+                [2] = {
+                    [1] = part
+                },
+                [3] = boolean
+            }
+            _(args)
+        end
+        
+        local function SpawnDecal(part,side)
+            local args = {
+                [1] = "CreateTextures",
+                [2] = {
+                    [1] = {
+                        ["Part"] = part,
+                        ["Face"] = side,
+                        ["TextureType"] = "Decal"
+                    }
+                }
+            }
+            _(args)
+        end
+        
+        local function AddDecal(part,asset,side)
+            local args = {
+                [1] = "SyncTexture",
+                [2] = {
+                    [1] = {
+                        ["Part"] = part,
+                        ["Face"] = side,
+                        ["TextureType"] = "Decal",
+                        ["Texture"] = "rbxassetid://"..asset
+                    }
+                }
+            }
+            _(args)
+        end
+        
+        for _,v in ipairs(game.workspace:GetDescendants()) do
+            if v:IsA("BasePart") then
+                spawn(function()
+                    SetLocked(v,false)
+                    SpawnDecal(v,Enum.NormalId.Front)
+                    AddDecal(v,id,Enum.NormalId.Front)
+
+                    SpawnDecal(v,Enum.NormalId.Back)
+                    AddDecal(v,id,Enum.NormalId.Back)
+
+                    SpawnDecal(v,Enum.NormalId.Right)
+                    AddDecal(v,id,Enum.NormalId.Right)
+
+                    SpawnDecal(v,Enum.NormalId.Left)
+                    AddDecal(v,id,Enum.NormalId.Left)
+
+                    SpawnDecal(v,Enum.NormalId.Bottom)
+                    AddDecal(v,id,Enum.NormalId.Bottom)
+
+                    SpawnDecal(v,Enum.NormalId.Top)
+                    AddDecal(v,id,Enum.NormalId.Top)
+                end)
+            end
+        end
+    end
+end
+
+DecalSpamButton.MouseButton1Click:Connect(function()
+    DecalSpam("99938629174943")
+end)
+
+DecalSpam2Button.MouseButton1Click:Connect(function()
+    DecalSpam("13218221691")
+end)
+
+JOHNDOEButton.MouseButton1Click:Connect(function()
+    DecalSpam("133097312832809")
+end)
+
+local function CreateParticles(id)
+    local tool = GetSyncAPI()
+    if tool then
+        local remote = tool.SyncAPI.ServerEndpoint
+        
+        for x = -100, 100, 20 do
+            for z = -100, 100, 20 do
+                local char = Player.Character
+                if char and char:FindFirstChild("HumanoidRootPart") then
+                    local cf = char.HumanoidRootPart.CFrame + Vector3.new(x, 0, z)
+                    
+                    local args = {
+                        [1] = "CreatePart",
+                        [2] = "Normal",
+                        [3] = cf,
+                        [4] = workspace
+                    }
+                    remote:InvokeServer(unpack(args))
+                    
+                    for _, part in ipairs(workspace:GetChildren()) do
+                        if part:IsA("BasePart") and part.CFrame == cf then
+                            local setNameArgs = {
+                                [1] = "SetName",
+                                [2] = {
+                                    [1] = part
+                                },
+                                [3] = "Particle"
+                            }
+                            remote:InvokeServer(unpack(setNameArgs))
+                            
+                            local anchorArgs = {
+                                [1] = "SyncAnchor",
+                                [2] = {
+                                    [1] = {
+                                        ["Part"] = part,
+                                        ["Anchored"] = false
+                                    }
+                                }
+                            }
+                            remote:InvokeServer(unpack(anchorArgs))
+                            
+                            local spawnArgs = {
+                                [1] = "CreateTextures",
+                                [2] = {
+                                    [1] = {
+                                        ["Part"] = part,
+                                        ["Face"] = Enum.NormalId.Top,
+                                        ["TextureType"] = "Decal"
+                                    }
+                                }
+                            }
+                            remote:InvokeServer(unpack(spawnArgs))
+                            
+                            local addArgs = {
+                                [1] = "SyncTexture",
+                                [2] = {
+                                    [1] = {
+                                        ["Part"] = part,
+                                        ["Face"] = Enum.NormalId.Top,
+                                        ["TextureType"] = "Decal",
+                                        ["Texture"] = "rbxassetid://"..id
+                                    }
+                                }
+                            }
+                            remote:InvokeServer(unpack(addArgs))
+                            
+                            local transArgs = {
+                                [1] = "SyncMaterial",
+                                [2] = {
+                                    [1] = {
+                                        ["Part"] = part,
+                                        ["Transparency"] = 0.5
+                                    }
+                                }
+                            }
+                            remote:InvokeServer(unpack(transArgs))
+                            
+                            spawn(function()
+                                while part and part.Parent do
+                                    local moveArgs = {
+                                        [1] = "SyncMove",
+                                        [2] = {
+                                            [1] = {
+                                                ["Part"] = part,
+                                                ["CFrame"] = part.CFrame + Vector3.new(0, 0.5, 0)
+                                            }
+                                        }
+                                    }
+                                    remote:InvokeServer(unpack(moveArgs))
+                                    wait(0.1)
+                                    
+                                    local moveArgs = {
+                                        [1] = "SyncMove",
+                                        [2] = {
+                                            [1] = {
+                                                ["Part"] = part,
+                                                ["CFrame"] = part.CFrame - Vector3.new(0, 0.5, 0)
+                                            }
+                                        }
+                                    }
+                                    remote:InvokeServer(unpack(moveArgs))
+                                    wait(0.1)
+                                end
+                            end)
+                        end
+                    end
+                end
+            end
+        end
+    end
+end
+
+ParticlesButton.MouseButton1Click:Connect(function()
+    CreateParticles("99938629174943")
+end)
+
+Particles2Button.MouseButton1Click:Connect(function()
+    CreateParticles("133097312832809")
+end)
+                                
+                        
